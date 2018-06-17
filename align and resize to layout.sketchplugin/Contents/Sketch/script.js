@@ -1,3 +1,6 @@
+/*  2018.06.17, By: Kevin van Breemaat, kevinvanbreemaat.nl     */
+
+
 // variable to story two variables. Snaps and selection.
 let threadDictionary = NSThread.mainThread().threadDictionary();
 

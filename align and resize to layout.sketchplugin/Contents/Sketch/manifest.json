@@ -1,13 +1,12 @@
 {
-    "name" : "🎮 align to layout",
+    "name" : "🔮 Align and resize to layout",
     "identifier": "nl.kevinvanbreemaat.testplugin",
-    "description" : "Align and resize to layout",
+    "description" : "Align and resize layers to your layout in Sketch",
     "authorEmail" : "info@kevinvanbreemaat.nl",
     "author" : "Kevin van Breemaat",
     "homepage": "https://kevinvanbreemaat.nl",
     "version": "0.1",
-    "compatibleVersion": 3,
-    "bundleVersion": 1,
+    "appcast": "https://ashung.github.io/Automate-Sketch/appcast.xml",
     "icon": "icon.png",
       "commands": [
             {
