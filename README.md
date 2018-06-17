@@ -1,9 +1,11 @@
-# Align and resize to layout  v.1.1.1
+# Align and resize to layout  v.0.1
 _Align and resize layers to your layout in Sketch_
 
 When working in a Sketch.app document everything is designed around the layout. I thought it would be nice to quickly align and resize elements to the layout. So I wrote a little script to do just that. You can quickly align and resize the width of a element.
 
 Enjoy!
+
+![Screencast of the Stickers plugin](demo.gif)
 
 ## Installation
 
