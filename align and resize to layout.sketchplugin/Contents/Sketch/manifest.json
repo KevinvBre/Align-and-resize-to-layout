@@ -6,7 +6,7 @@
     "author" : "Kevin van Breemaat",
     "homepage": "https://kevinvanbreemaat.nl",
     "version": "0.1",
-    "appcast": "https://ashung.github.io/Automate-Sketch/appcast.xml",
+    "appcast": "https://raw.githubusercontent.com/KevinvBre/Align-and-resize-to-layout/master/appcast.xml",
     "icon": "icon.png",
       "commands": [
             {

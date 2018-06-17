@@ -10,11 +10,11 @@
         <description>
           <![CDATA[
             <ul>
-              <li>Minor update v1.1</li>
+              <li>First release v0.1</li>
             </ul>
           ]]>
         </description>
-        <enclosure url="https://plugin.zip" sparkle:version="0.1" />
+        <enclosure url="https://github.com/KevinvBre/Align-and-resize-to-layout/archive/master.zip" sparkle:version="0.1" />
       </item>
   </channel>
 </rss>
