@@ -1,0 +1,71 @@
+{
+    "name" : "🎮 align to layout",
+    "identifier": "nl.kevinvanbreemaat.testplugin",
+    "description" : "Align and resize to layout",
+    "authorEmail" : "info@kevinvanbreemaat.nl",
+    "author" : "Kevin van Breemaat",
+    "homepage": "https://kevinvanbreemaat.nl",
+    "version": "0.1",
+    "compatibleVersion": 3,
+    "bundleVersion": 1,
+    "icon": "icon.png",
+      "commands": [
+            {
+                "name": "Align to layout left",
+                "identifier": "my-command-left",
+                "shortcut": "cmd ctrl ←",
+                "script": "script.js",
+                "handler": "moveColLeft"
+            },
+            {
+                "name": "Align to layout right",
+                "identifier": "my-command-right",
+                "shortcut": "cmd ctrl →",
+                "script": "script.js",
+                "handler": "moveColRight"
+            },
+            {
+                "name": "Resize to layout left",
+                "identifier": "my-command-left-shift",
+                "shortcut": "cmd shift ctrl ←",
+                "script": "script.js",
+                "handler": "setWidthColLeft"
+            },
+            {
+                "name": "Resize to layout right",
+                "identifier": "my-command-right-shift",
+                "shortcut": "cmd shift ctrl →",
+                "script": "script.js",
+                "handler": "setWidthColRight"
+            },
+            {
+                "name": "About",
+                "identifier": "About",
+                "script": "script.js",
+                "handler": "website"
+            },
+            {
+                "name": "x check",
+                "identifier": "my-command-check",
+                "shortcut": "cmd ctrl alt",
+                "script": "script.js",
+                "handlers" : {
+                    "run" : "onRun",
+                    "ArtboardChanged.finish": "ArtboardChanged",
+                    "SelectionChanged.finish": "SelectionChanged"
+                },
+            },
+      ],
+      "menu": {
+        "title": "Align to layout",
+        "items": [
+          "my-command-left",
+          "my-command-right",
+          "-",
+          "my-command-left-shift",
+          "my-command-right-shift",
+          "-",
+          "About"
+        ]
+      }
+}
