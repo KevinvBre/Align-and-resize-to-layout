@@ -8,7 +8,7 @@ Enjoy!
 ## Installation
 
 ### Download the zip
-1. Download and open [align-and-resize-to-layout-master.zip](https://master.zip)
+1. Download and open [align-and-resize-to-layout-master.zip](https://github.com/KevinvBre/Align-and-resize-to-layout/archive/master.zip)
 2. Double click on the plugin and open up Sketch.
 
 ## How to Use
