@@ -20,10 +20,10 @@ Select `Plugins ▸ Align to layout` in the Sketch menu bar or use the keyboard 
 
 | *Shortcut*                                        | *Action*                          |
 |---------------------------------------------------|-----------------------------------|
-| <kbd>Command</kbd> + <kbd>Arrow Left</kbd> | Align selection to layout left
-| <kbd>Command</kbd> +  <kbd>Arrow Right</kbd> | Align selection to layout Right
-| <kbd>Command</kbd> + <kbd>⇧ shift</kbd> + <kbd>Arrow Left</kbd> | Resize selection to layout left
-| <kbd>Command</kbd> + <kbd>⇧ shift</kbd> + <kbd>Arrow Right</kbd> | Resize selection to layout right
+| <kbd>Command</kbd> + <kbd>CTRL</kbd> + <kbd>Arrow Left</kbd> | Align selection to layout left
+| <kbd>Command</kbd> + <kbd>CTRL</kbd> +  <kbd>Arrow Right</kbd> | Align selection to layout Right
+| <kbd>Command</kbd> + <kbd>CTRL</kbd> + <kbd>⇧ shift</kbd> + <kbd>Arrow Left</kbd> | Resize selection to layout left
+| <kbd>Command</kbd> + <kbd>CTRL</kbd> + <kbd>⇧ shift</kbd> + <kbd>Arrow Right</kbd> | Resize selection to layout right
 
 
 ## Version history
