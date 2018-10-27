@@ -5,7 +5,7 @@
     "authorEmail" : "info@kevinvanbreemaat.nl",
     "author" : "Kevin van Breemaat",
     "homepage": "https://kevinvanbreemaat.nl",
-    "version": "0.1",
+    "version": "0.2",
     "appcast": "https://raw.githubusercontent.com/KevinvBre/Align-and-resize-to-layout/master/appcast.xml",
     "icon": "icon.png",
       "commands": [

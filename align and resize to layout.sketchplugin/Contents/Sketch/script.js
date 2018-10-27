@@ -5,10 +5,28 @@
 let threadDictionary = NSThread.mainThread().threadDictionary();
 
 // shortcut command: shift+cmd+ctrl and <--
-function setWidthColLeft(){     setWidthOfSelection(    calcNewWidth(-1)    );  }
+function setWidthColLeft(context){
+    ga(context, "resize-setWidthColLeft");
+    setWidthOfSelection(    calcNewWidth(-1)    );
+}
 
 // shortcut command: shift+cmd+ctrl and -->
-function setWidthColRight(){    setWidthOfSelection(    calcNewWidth(1)     );   }
+function setWidthColRight(context){
+    setWidthOfSelection(    calcNewWidth(1)     );
+    ga(context, "resize-setWidthColRight");
+}
+
+// shotcut command: cmd+ctrl  and <--
+function moveColLeft(context){
+    setXofSelection(    calcMoveColX(-1)    );
+    ga(context, "resize-moveColLeft");
+}
+
+// shotcut command: cmd+ctrl  and -->
+function moveColRight(context){
+    setXofSelection(    calcMoveColX(1)     );
+    ga(context, "resize-moveColRight");
+}
 
 // calculate the new width for the current selection
 function calcNewWidth(n_){
@@ -27,16 +45,17 @@ function setWidthOfSelection(width_){
     for (var i = 0; i < threadDictionary.selectedLayers.count(); i++)threadDictionary.selectedLayers[i].frame().width = width_;
 }
 
-// shotcut command: cmd+ctrl  and <--
-function moveColLeft(){     setXofSelection(    calcMoveColX(-1)    );  }
-
-// shotcut command: cmd+ctrl  and -->
-function moveColRight(){    setXofSelection(    calcMoveColX(1)     );   }
 
 //
 function calcMoveColX(n_){
+
+
     var selectionXpos =  threadDictionary.selectedLayers[0].frame().x();        // get the x pos from the first selected layer. NOT the group!. Maybe one day.
     var closestI = sg_calculateClosestColToXpos(selectionXpos) + n_;            // caclulated the value find the closest value from X_ in a array.
+    // scope the max array range.
+    if(closestI <= 0)closestI = 0;
+    if(closestI >= threadDictionary.snaps)closestI = threadDictionary.snaps;
+
     var newX = threadDictionary.snaps[closestI];                                // new x position is the newly found value.
     return newX;
 }
@@ -52,6 +71,7 @@ function setXofSelection(newx_){
 function sg_calculateClosestColToXpos(x_) {
     var lowestDif = 10000;                                                      // really high lowestDif value that can't not be replaced.
     var closestI = 100;                                                         // random value that wont actually exist
+
     for (var i = 0; i < threadDictionary.snaps.length; i++) {                   // loop the array_
         var dif = Math.abs(threadDictionary.snaps[i] - x_);                     // take the X value and array value. En make er een absolute getal van (geen negatives)
         // log(i + " : " + threadDictionary.snaps[i] + " dif: " + dif);         // for debugging
@@ -60,6 +80,7 @@ function sg_calculateClosestColToXpos(x_) {
             closestI = i;                                                       // save the array position of the new lowest.
         }
     }
+
     // return the position in the array instead of the value.
     return closestI;
 }
@@ -85,9 +106,10 @@ function ArtboardChanged(context) {
     var abGuttersOutside = ablayout.guttersOutside();                           // not using this but had to google a while to find it. This is for safekeeping
 
 
+
+
     var sg_offSet = ( abwidth - maxWidth ) / 2;                                 // calc the offset value.
     if(abGuttersOutside == 1)sg_offSet +=  sg_gutterWidth/2;                    // calc the offset value if gutters are outside
-
 
     for (var i = 0; i < sg_numberColls*2 + 2; i++) {                            // add two for the absolute 0. and add 1 for the offset.
             sg_xPosSnapPoints.push(0);                                          // create a position for sg_xPosSnapPoints.
@@ -107,7 +129,73 @@ function openUrlInBrowser(url) {
     NSWorkspace.sharedWorkspace().openURL(NSURL.URLWithString(url));
 }
 
-function website() {
+function website(context) {
     console.log("open");
     openUrlInBrowser("http://kevinvanbreemaat.nl/");
+    ga(context, "HelpResize");
 };
+
+
+
+
+/*
+
+    Everything below this line except the trackingID is a copy paste from:
+    https://github.com/Ashung/Automate-Sketch
+
+*/
+
+
+function ga(context, eventCategory) {
+
+    var trackingID = "UA-25194603-2";
+
+    var uuidKey = "google.analytics.uuid";
+    var uuid = NSUserDefaults.standardUserDefaults().objectForKey(uuidKey);
+    if (!uuid) {
+        uuid = NSUUID.UUID().UUIDString();
+        NSUserDefaults.standardUserDefaults().setObject_forKey(uuid, uuidKey);
+    }
+
+    var appName = encodeURI(context.plugin.name()),
+        appId = context.plugin.identifier(),
+        appVersion = context.plugin.version();
+
+    var url = "https://www.google-analytics.com/collect?v=1";
+    // Tracking ID
+    url += "&tid=" + trackingID;
+    // Source
+    url += "&ds=sketch" + MSApplicationMetadata.metadata().appVersion;
+    // Client ID
+    url += "&cid=" + uuid;
+    // User GEO location
+    url += "&geoid=" + NSLocale.currentLocale().countryCode();
+    // User language
+    url += "&ul=" + NSLocale.currentLocale().localeIdentifier().toLowerCase();
+    // pageview, screenview, event, transaction, item, social, exception, timing
+    url += "&t=event";
+    // App Name
+    url += "&an=" + appName;
+    // App ID
+    url += "&aid=" + appId;
+    // App Version
+    url += "&av=" + appVersion;
+    // Event category
+    url += "&ec=" + encodeURI(eventCategory);
+    // Event action
+    // url += "&ea=" + encodeURI(eventAction);
+    url += "&ea=" + encodeURI(context.command.identifier());
+    // Event label
+    // if (eventLabel) {
+    //     url += "&el=" + encodeURI(eventLabel);
+    // }
+    // Event value
+    // if (eventValue) {
+    //     url += "&ev=" + encodeURI(eventValue);
+    // }
+
+    var session = NSURLSession.sharedSession();
+    var task = session.dataTaskWithURL(NSURL.URLWithString(NSString.stringWithString(url)));
+    task.resume();
+
+}
